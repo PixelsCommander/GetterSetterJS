@@ -1,30 +1,17 @@
-window.defineGetterSetter = function(variableParent, variableName, getterFunction, setterFunction){
-	if (Object.defineProperty)
-	{
-		try
-		{
-			Object.defineProperty(variableParent, variableName, { 
-				get: getterFunction, 
-				set: setterFunction 
-			});
-		}
-		catch(e)
-		{
-			DOMonly = true;
-		}	
-	}
-	else if (document.__defineGetter__)
-	{
-		// Use the legacy syntax
-		variableParent.__defineGetter__(variableName, getterFunction);
-		variableParent.__defineSetter__(variableName, setterFunction);
-	}
-	else
-	{
-		// If neither defineProperty or __defineGetter__ is supported
-		Console.log("Your browser do not support any getters/setters technique");
-	}
-	
-	variableParent["get" + variableName] = getterFunction;
-	variableParent["set" + variableName] = setterFunction;
+function defineGetterSetter(variableParent, variableName, getterFunction, setterFunction){
+    if (Object.defineProperty)
+    {
+        Object.defineProperty(variableParent, variableName, {
+            get: getterFunction,
+            set: setterFunction
+        });
+    }
+    else if (document.__defineGetter__)
+    {
+        variableParent.__defineGetter__(variableName, getterFunction);
+        variableParent.__defineSetter__(variableName, setterFunction);
+    }
+
+    variableParent["get" + variableName] = getterFunction;
+    variableParent["set" + variableName] = setterFunction;
 }
