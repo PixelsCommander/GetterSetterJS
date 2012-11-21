@@ -1,4 +1,4 @@
-function defineGetterSetter(variableParent, variableName, getterFunction, setterFunction){
+function getterSetter(variableParent, variableName, getterFunction, setterFunction){
     if (Object.defineProperty)
     {
         Object.defineProperty(variableParent, variableName, {
